@@ -1,3 +1,5 @@
+def dockerImage  // Declare global variable here
+
 pipeline {
     agent any
     stages {
@@ -10,8 +12,10 @@ pipeline {
         }
         stage('Push Image') {
             steps {
-                withDockerRegistry([credentialsId: 'dockerhub-creds', url: '']) {
-                    dockerImage.push('latest')
+                script {  // Wrap this in script block to call methods on dockerImage
+                    withDockerRegistry([credentialsId: 'dockerhub-creds', url: '']) {
+                        dockerImage.push('latest')
+                    }
                 }
             }
         }
