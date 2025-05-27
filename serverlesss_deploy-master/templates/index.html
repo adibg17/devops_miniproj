@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Portfolio</title>
+  <style>
+    body {
+      background: #111;
+      color: #FFD700;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 500px;
+      margin: 60px auto;
+      background: #222;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.7);
+      padding: 32px 40px 40px 40px;
+      border: 2px solid #FFD700;
+    }
+    h1, h3 {
+      text-align: center;
+      margin-bottom: 24px;
+      color: #FFD700;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #FFD700;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 18px;
+      border: 1px solid #FFD700;
+      border-radius: 6px;
+      background: #181818;
+      color: #FFD700;
+      font-size: 1em;
+      transition: border 0.2s;
+    }
+    input:focus, textarea:focus {
+      border: 2px solid #FFD700;
+      outline: none;
+    }
+    input[type="submit"] {
+      background: #FFD700;
+      color: #111;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    input[type="submit"]:hover {
+      background: #111;
+      color: #FFD700;
+      border: 1px solid #FFD700;
+    }
+    @media (max-width: 600px) {
+      .container { padding: 18px 8px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to My Portfolio</h1>
+    <h3>Contact Me</h3>
+    <form action="/submit" method="post">
+      <label for="name">Name:</label>
+      <input id="name" name="name" required>
+      <label for="email">Email:</label>
+      <input id="email" name="email" required type="email">
+      <label for="phone">Phone:</label>
+      <input id="phone" name="phone" type="tel">
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" required rows="4"></textarea>
+      <input type="submit" value="Send">
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contacts</title>
+  <style>
+    body {
+      background: #111;
+      color: #FFD700;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 900px;
+      margin: 60px auto;
+      background: #222;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.7);
+      padding: 32px 40px 40px 40px;
+      border: 2px solid #FFD700;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 32px;
+      color: #FFD700;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #181818;
+      color: #FFD700;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.5);
+    }
+    th, td {
+      padding: 14px 10px;
+      text-align: left;
+      border-bottom: 1px solid #FFD70033;
+    }
+    th {
+      background: #111;
+      color: #FFD700;
+      font-size: 1.1em;
+      border-bottom: 2px solid #FFD700;
+    }
+    tr:nth-child(even) {
+      background: #222;
+    }
+    tr:hover {
+      background: #FFD70022;
+    }
+    @media (max-width: 700px) {
+      .container { padding: 18px 4px; }
+      th, td { font-size: 0.95em; padding: 8px 4px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Contact Messages</h1>
+    <table>
+      <tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Message</th></tr>
+      {% for c in contacts %}
+        <tr>
+          <td>{{c[0]}}</td><td>{{c[1]}}</td><td>{{c[2]}}</td><td>{{c[3]}}</td><td>{{c[4]}}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+</body>
+</html>
