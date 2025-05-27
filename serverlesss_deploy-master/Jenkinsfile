@@ -4,7 +4,6 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Build using the serverlesss_deploy-master folder as context
                     dockerImage = docker.build('portfolio-app', 'serverlesss_deploy-master')
                 }
             }
@@ -12,13 +11,15 @@ pipeline {
         stage('Push Image') {
             steps {
                 withDockerRegistry([credentialsId: 'dockerhub-creds', url: '']) {
-                    dockerImage.push('latest')
+                    script {
+                        dockerImage.push('latest')
+                    }
                 }
             }
         }
         stage('Deploy to K8s') {
             steps {
-                sh 'kubectl apply -f serverlesss_deploy-master/k8s-deployment.yaml'
+                sh 'kubectl apply -f k8s-deployment.yaml'
             }
         }
     }
