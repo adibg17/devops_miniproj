@@ -1,27 +1,24 @@
-def dockerImage  // Declare global variable here
-
 pipeline {
     agent any
     stages {
         stage('Build Docker Image') {
             steps {
                 script {
-                    dockerImage = docker.build('portfolio-app')
+                    // Build using the serverlesss_deploy-master folder as context
+                    dockerImage = docker.build('portfolio-app', 'serverlesss_deploy-master')
                 }
             }
         }
         stage('Push Image') {
             steps {
-                script {  // Wrap this in script block to call methods on dockerImage
-                    withDockerRegistry([credentialsId: 'dockerhub-creds', url: '']) {
-                        dockerImage.push('latest')
-                    }
+                withDockerRegistry([credentialsId: 'dockerhub-creds', url: '']) {
+                    dockerImage.push('latest')
                 }
             }
         }
         stage('Deploy to K8s') {
             steps {
-                sh 'kubectl apply -f k8s-deployment.yaml'
+                sh 'kubectl apply -f serverlesss_deploy-master/k8s-deployment.yaml'
             }
         }
     }
